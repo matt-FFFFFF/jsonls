@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -24,7 +25,7 @@ var rootCmd = &cobra.Command{
 		}
 		ds, err := os.ReadDir(".")
 		if err != nil {
-			panic(err)
+			fmt.Fprintf(os.Stderr, "Error: %s", err.Error())
 		}
 		entries := make([]string, 0, len(ds))
 		for _, d := range ds {
